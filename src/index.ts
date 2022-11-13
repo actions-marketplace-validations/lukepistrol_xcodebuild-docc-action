@@ -9,13 +9,7 @@ async function main() {
 
   // execute xcodebuild docbuild
   await exec.exec('xcodebuild', [
-    'clean',
-    'docbuild',
-    `-scheme ${scheme}`,
-    `-destination generic/platform=${platform}`,
-    'OTHER_DOCC_FLAGS="--transform-for-static-hosting',
-    `--hosting-base-path ${scheme}`,
-    `--output-path ${outputPath}"`
+    `clean docbuild -scheme ${scheme} -destination generic/platform=${platform} OTHER_DOCC_FLAGS="--transform-for-static-hosting --hosting-base-path ${scheme} --output-path ${outputPath}"`
   ]);  
 }
 
