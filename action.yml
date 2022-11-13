@@ -1,0 +1,29 @@
+name: Xcodebuild DocC Action
+description: Build DocC documentation for your Xcode project / Swift Package
+author: lukepistrol
+
+inputs:
+  scheme:
+    description: The scheme to build
+    required: true
+    default: ""
+  platform:
+    description: The platform to build for
+    required: true
+    default: macos
+  output-path:
+    description: The path to output the documentation to
+    required: true
+    default: ./docs
+  clean:
+    description: Whether to clean the build directory before building
+    required: false
+    default: true
+
+runs:
+  using: node18
+  main: dist/index.js
+
+branding:
+  icon: book
+  color: blue
