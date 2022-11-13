@@ -7,13 +7,14 @@ async function main() {
   const outputPath = core.getInput('output-path');
   const clean = core.getInput('clean');
 
+  // execute xcodebuild docbuild
   await exec.exec('xcodebuild', [
-    ...(clean === 'true' ? ['clean'] : []),
-    ...(['docbuild']),
-    ...(scheme.length ? ['-scheme', scheme] : []),
-    ...(platform.length ? ['-destination', `generic/platform=${platform}`] : []),
-    ...([`OTHER_DOCC_FLAGS="--transform-for-static-hosting --hosting-base-path ${scheme} --output-path ${outputPath}"`])
-  ]);
+    'clean',
+    'docbuild',
+    `-scheme ${scheme}`,
+    `-destination generic/platform=${platform}`,
+    `OTHER_DOCC_FLAGS="--transform-for-static-hosting --hosting-base-path ${scheme} --output-path ${outputPath}"`
+  ]);  
 }
 
 (async () => {
