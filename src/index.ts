@@ -9,10 +9,10 @@ async function main() {
 
   await exec.exec('xcodebuild', [
     ...(clean === 'true' ? ['clean'] : []),
-    'docbuild',
+    ...(['docbuild']),
     ...(scheme.length ? ['-scheme', scheme] : []),
     ...(platform.length ? ['-destination', `generic/platform=${platform}`] : []),
-    `OTHER_DOCC_FLAGS="--transform-for-static-hosting --hosting-base-path ${scheme} --output-path ${outputPath}"`
+    ...([`OTHER_DOCC_FLAGS="--transform-for-static-hosting --hosting-base-path ${scheme} --output-path ${outputPath}"`])
   ]);
 }
 
