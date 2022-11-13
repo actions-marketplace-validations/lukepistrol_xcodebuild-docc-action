@@ -13,7 +13,9 @@ async function main() {
     'docbuild',
     `-scheme ${scheme}`,
     `-destination generic/platform=${platform}`,
-    `OTHER_DOCC_FLAGS='--transform-for-static-hosting --hosting-base-path ${scheme} --output-path ${outputPath}'`
+    'OTHER_DOCC_FLAGS="--transform-for-static-hosting',
+    `--hosting-base-path ${scheme}`,
+    `--output-path ${outputPath}"`
   ]);  
 }
 
