@@ -4019,15 +4019,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 exports.__esModule = true;
 var core = __importStar(__nccwpck_require__(186));
 var exec = __importStar(__nccwpck_require__(514));
@@ -4041,12 +4032,10 @@ function main() {
                     platform = core.getInput('platform');
                     outputPath = core.getInput('output-path');
                     clean = core.getInput('clean');
-                    return [4 /*yield*/, exec.exec('xcodebuild', __spreadArray(__spreadArray(__spreadArray(__spreadArray(__spreadArray([], (clean === 'true' ? ['clean'] : []), true), [
-                            'docbuild'
-                        ], false), (scheme.length ? ['-scheme', scheme] : []), true), (platform.length ? ['-destination', "generic/platform=".concat(platform)] : []), true), [
-                            "OTHER_DOCC_FLAGS=\"--transform-for-static-hosting --hosting-base-path ".concat(scheme, " --output-path ").concat(outputPath, "\"")
-                        ], false))];
+                    // execute xcodebuild docbuild
+                    return [4 /*yield*/, exec.exec("xcodebuild clean docbuild -scheme ".concat(scheme, " -destination generic/platform=").concat(platform, " OTHER_DOCC_FLAGS=\"--transform-for-static-hosting --hosting-base-path ").concat(scheme, " --output-path ").concat(outputPath, "\""))];
                 case 1:
+                    // execute xcodebuild docbuild
                     _a.sent();
                     return [2 /*return*/];
             }

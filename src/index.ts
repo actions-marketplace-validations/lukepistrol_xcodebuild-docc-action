@@ -8,9 +8,7 @@ async function main() {
   const clean = core.getInput('clean');
 
   // execute xcodebuild docbuild
-  await exec.exec('xcodebuild', [
-    `clean docbuild -scheme ${scheme} -destination generic/platform=${platform} OTHER_DOCC_FLAGS="--transform-for-static-hosting --hosting-base-path ${scheme} --output-path ${outputPath}"`
-  ]);  
+  await exec.exec(`xcodebuild clean docbuild -scheme ${scheme} -destination generic/platform=${platform} OTHER_DOCC_FLAGS="--transform-for-static-hosting --hosting-base-path ${scheme} --output-path ${outputPath}"`);  
 }
 
 (async () => {
