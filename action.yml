@@ -1,29 +1,21 @@
-name: Xcodebuild DocC Action
-description: Build DocC documentation for your Xcode project / Swift Package
-author: lukepistrol
-
+name: 'Build DocC Documentation'
+description: 'Builds the DocC documentation for the project'
 inputs:
   scheme:
-    description: The scheme to build
+    description: 'The scheme to build the documentation for'
     required: true
-    default: ""
+    default: 'MyFramework'
+  output:
+    description: 'The output directory for the documentation'
+    required: true
+    default: './docs'
   platform:
-    description: The platform to build for
+    description: 'The platform to build the documentation for [macos, ios, watchos, tvos]'
     required: true
-    default: macos
-  output-path:
-    description: The path to output the documentation to
-    required: true
-    default: ./docs
-  clean:
-    description: Whether to clean the build directory before building
-    required: false
-    default: true
-
+    default: 'macos'
 runs:
-  using: node16
-  main: dist/index.js
-
-branding:
-  icon: book
-  color: blue
+  using: 'composite'
+  steps:
+    - name: 'Build DocC Documentation'
+      shell: bash
+      run: $GITHUB_ACTION_PATH/build-docc.sh ${{ inputs.scheme }} ${{ inputs.output }} ${{ inputs.platform }}
